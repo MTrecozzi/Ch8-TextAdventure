@@ -25,6 +25,8 @@ public class Room
     int xPos;
     int yPos;
     
+    public Item takeItem;
+    
     private String lookDetails;
     
     public boolean visited = false;
@@ -55,6 +57,14 @@ public class Room
     }
     
     
+    public void setTakeItem(Item item) {
+     this.takeItem = item;   
+    }
+    
+    public Item getTakeItem() {
+     return this.takeItem;   
+    }
+    
     /**
      * Set the Details String of the room for when a player uses the look command
      * @param lookDetails When using the look command in a room, prompt the player with this string
@@ -84,6 +94,10 @@ public class Room
         }
         
        
+    }
+    
+    public void removeItem() {
+     this.takeItem = null;   
     }
     
     public int getX() {

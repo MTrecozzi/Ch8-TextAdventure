@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * Write a description of class Player here.
@@ -8,15 +9,28 @@
 public class Player
 {
     // instance variables - replace the example below with your own
-    Coords currentPos;
+    ArrayList<Item> inventory = new ArrayList<>();
 
     /**
      * Constructor for objects of class Player
      */
     public Player()
     {
-        // initialise instance variables
-        currentPos = new Coords(0, 0);
+  
+    }
+    
+    public void addItem(Item itemToAdd) {
+        inventory.add(itemToAdd);
+        
+    }
+    
+    public void printItems() {
+        
+        System.out.println("Inventory: ");
+        
+        inventory.stream()
+        .forEach(i -> System.out.println(i.getName()));
+        
     }
 
 }

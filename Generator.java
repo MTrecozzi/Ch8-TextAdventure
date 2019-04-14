@@ -45,21 +45,9 @@ public class Generator
     }
     
     // Needs to be moved to a Map Class;
-    public static void generateMappedRoom(HashMap<Coords, Room> roomMap, Room thisRoom) {
+    public static void generateMappedRoom() {
         
-        int currentXPos = thisRoom.getX();
-        int currentYPos = thisRoom.getY();
         
-        Random rand = new Random();
-        
-        // EastCheck
-        // SouthCheck
-        // WestCheck
-        // North Check
-        
-        // Generate a random valid number.
-        
-        int direction = rand.nextInt(4);
         // convert direction into 
         
         

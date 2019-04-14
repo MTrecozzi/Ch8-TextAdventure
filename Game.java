@@ -16,6 +16,7 @@
  */
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Game 
 {
@@ -28,6 +29,7 @@ public class Game
     // Change to singlton system, refrence old canvas project
     private Player player = new Player();
     private Map homeMap;
+
         
     /**
      * Create the game and initialise its internal map.
@@ -66,6 +68,7 @@ public class Game
         armory.setInitialDescription("You arrive in a desolate armory, it hasn't been used in years by the looks of it.");
         armory.setDescription("The abandoned armory of a dedicated smithy");
         armory.setLookDetails("You spot a Shield reinforced with Steel");
+        armory.setTakeItem(new Item("Shield"));
         homeMap.setRoom(armory, 0,0);
         
         Room bladeSmithy = new Room ("The Abandoned Blade Smithy");
@@ -171,10 +174,17 @@ public class Game
                 wantToQuit = quit(command);
                 break;
             case LOOK:
-            if (currentRoom.getLookDetails() != null){
-             System.out.println(currentRoom.getLookDetails());   
-            } else System.out.println("You inspect the room, but find no meaningful details");
-            break;
+                if (currentRoom.getLookDetails() != null){
+                 System.out.println(currentRoom.getLookDetails());   
+                } else System.out.println("You inspect the room, but find no meaningful details");
+                break;
+            case TAKE:
+                if (currentRoom.getTakeItem() != null) {
+                    player.addItem(currentRoom.getTakeItem());
+                    currentRoom.removeItem();
+                    player.printItems();
+                }
+                break;    
         }
         return wantToQuit;
     }
