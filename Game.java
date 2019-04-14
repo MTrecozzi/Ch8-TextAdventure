@@ -27,6 +27,7 @@ public class Game
     
     // Change to singlton system, refrence old canvas project
     private Player player = new Player();
+    private Map homeMap;
         
     /**
      * Create the game and initialise its internal map.
@@ -45,13 +46,49 @@ public class Game
         gameObject.play();
         
     }
+    
+    // Initialize the Home Map
+    public void createHomeMap() {
+        
+        // create Map for starting area
+        homeMap = new Map("Mysterious Dungeon");
+        
+        // Create and initialize a room
+        Room startingWell = new Room ("Mysterious Well");
+        // Add it to the map.
+        homeMap.setRoom(startingWell, 1, 0);
+        
+        Room armory = new Room("The Armory");
+        homeMap.setRoom(armory, 0, 0);
+        
+        Room bladeSmithy = new Room ("Abandoned Blade Smithy");
+        homeMap.setRoom(bladeSmithy, 2, 0);
+        
+        Room prisonCell = new Room("The Darkened Cell");
+        homeMap.setRoom(prisonCell, 1, 1);
+        
+        Room torchRoom = new Room("The Kindled Room");
+        homeMap.setRoom(torchRoom, 2, 1);
+        
+        Room longHall = new Room("Endless Hall");
+        homeMap.setRoom(longHall, 2, 2);
+        
+        Room diningRoom = new Room("Dilapidated Dining Hall");
+        homeMap.setRoom(diningRoom, 2, 3);
+        
+        
+        
+        
+        // call each room to set its exits
+        
+        
+    }
 
     /**
      * Create all the rooms and link their exits together.
      */
     private void createRooms()
     {
-        
         // Room Creation
         Room outside, theater, pub, lab, office, startingRoom;
       
@@ -140,6 +177,9 @@ public class Game
             case QUIT:
                 wantToQuit = quit(command);
                 break;
+            case LOOK:
+            System.out.println("You Look at the Current Room");
+            break;
         }
         return wantToQuit;
     }

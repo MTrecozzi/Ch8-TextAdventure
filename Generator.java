@@ -47,7 +47,8 @@ public class Generator
     // Needs to be moved to a Map Class;
     public static void generateMappedRoom(HashMap<Coords, Room> roomMap, Room thisRoom) {
         
-        Coords pos = thisRoom.getCoordinates();
+        int currentXPos = thisRoom.getX();
+        int currentYPos = thisRoom.getY();
         
         Random rand = new Random();
         

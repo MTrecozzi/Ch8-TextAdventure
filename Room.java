@@ -18,9 +18,11 @@ import java.util.Iterator;
 
 public class Room 
 {
+    private String title;
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
-    private Coords coordinates;
+    int xPos;
+    int yPos;
 
     /**
      * Create a room described "description". Initially, it has
@@ -39,11 +41,16 @@ public class Room
     }
     
     public void setCoordinates(int x, int y) {
-        coordinates.setPosition(x, y);
+        xPos = x;
+        yPos = y;
     }
     
-    public Coords getCoordinates() {    
-     return this.coordinates;   
+    public int getX() {
+     return this.xPos;   
+    }
+    
+    public int getY() {
+     return this.yPos;   
     }
 
     /**
