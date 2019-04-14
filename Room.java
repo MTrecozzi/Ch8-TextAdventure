@@ -13,13 +13,14 @@ import java.util.Iterator;
  * stores a reference to the neighboring room.
  * 
  * @author  Michael Kölling and David J. Barnes
- * @version 2011.08.10
+ * @version 2016.02.29
  */
 
 public class Room 
 {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
+    private Coords coordinates;
 
     /**
      * Create a room described "description". Initially, it has
@@ -30,7 +31,19 @@ public class Room
     public Room(String description) 
     {
         this.description = description;
-        exits = new HashMap<String, Room>();
+        exits = new HashMap<>();
+    }
+    
+    public Room() {
+     exits = new HashMap<>();   
+    }
+    
+    public void setCoordinates(int x, int y) {
+        coordinates.setPosition(x, y);
+    }
+    
+    public Coords getCoordinates() {    
+     return this.coordinates;   
     }
 
     /**
@@ -41,6 +54,10 @@ public class Room
     public void setExit(String direction, Room neighbor) 
     {
         exits.put(direction, neighbor);
+    }
+    
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**

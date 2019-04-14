@@ -12,13 +12,21 @@
  *  executes the commands that the parser returns.
  * 
  * @author  Michael Kölling and David J. Barnes
- * @version 2011.08.10
+ * @version 2016.02.29
  */
+
+import java.util.HashMap;
 
 public class Game 
 {
     private Parser parser;
     private Room currentRoom;
+    
+    // to be offload to level class
+    private HashMap<Integer, String> rooms = new HashMap<>();
+    
+    // Change to singlton system, refrence old canvas project
+    private Player player = new Player();
         
     /**
      * Create the game and initialise its internal map.
@@ -27,6 +35,15 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        
+        // RandomizeMap();
+    }
+    
+    public static void main (String[] args) {
+        
+        Game gameObject = new Game();
+        gameObject.play();
+        
     }
 
     /**
@@ -34,7 +51,9 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        
+        // Room Creation
+        Room outside, theater, pub, lab, office, startingRoom;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -56,8 +75,11 @@ public class Game
         lab.setExit("east", office);
 
         office.setExit("west", lab);
+        
+        //Generated Room
+        startingRoom = Generator.getStartingRoom();
 
-        currentRoom = outside;  // start game outside
+        currentRoom = startingRoom;  // start game outside
     }
 
     /**
