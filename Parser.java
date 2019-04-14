@@ -59,6 +59,7 @@ public class Parser
     /**
      * Print out a list of valid command words.
      */
+    // Implementation of 8.15 complete within Zull Better
     public void showCommands()
     {
         commands.showAll();
