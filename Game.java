@@ -11,8 +11,8 @@
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
  * 
- * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author  Matthew Trecozzi
+ * @version 4/14/19
  */
 
 import java.util.HashMap;
@@ -34,7 +34,8 @@ public class Game
      */
     public Game() 
     {
-        createRooms();
+
+        createHomeMap();
         parser = new Parser();
         
         // RandomizeMap();
@@ -46,7 +47,9 @@ public class Game
         gameObject.play();
         
     }
-    
+    /**
+     * Create the initial map and link the exits of all rooms within; 
+     */
     // Initialize the Home Map
     public void createHomeMap() {
         
@@ -55,69 +58,44 @@ public class Game
         
         // Create and initialize a room
         Room startingWell = new Room ("Mysterious Well");
+        startingWell.setInitialDescription("You awake from a darkness, the space you're in contains a mysterious well");
+        
         // Add it to the map.
-        homeMap.setRoom(startingWell, 1, 0);
+        homeMap.setRoom(startingWell, 1,0);
         
         Room armory = new Room("The Armory");
-        homeMap.setRoom(armory, 0, 0);
+        homeMap.setRoom(armory, 0,0);
         
         Room bladeSmithy = new Room ("Abandoned Blade Smithy");
-        homeMap.setRoom(bladeSmithy, 2, 0);
+        homeMap.setRoom(bladeSmithy, 2,0);
         
         Room prisonCell = new Room("The Darkened Cell");
-        homeMap.setRoom(prisonCell, 1, 1);
+        homeMap.setRoom(prisonCell, 1,1);
         
         Room torchRoom = new Room("The Kindled Room");
-        homeMap.setRoom(torchRoom, 2, 1);
+        homeMap.setRoom(torchRoom, 2,1);
         
         Room longHall = new Room("Endless Hall");
         homeMap.setRoom(longHall, 2, 2);
         
         Room diningRoom = new Room("Dilapidated Dining Hall");
-        homeMap.setRoom(diningRoom, 2, 3);
+        homeMap.setRoom(diningRoom, 2,3);
         
+        Room cellar = new Room("A dismal cellar, lost to time");
+        homeMap.setRoom(cellar, 2,4);
         
+        Room furnace = new Room("A roaring furnace lights a desolate attic");
+        homeMap.setRoom(furnace, 1,4);
         
+        // Call our current map to set the exits of all rooms within its rooms[][];
+        homeMap.setExits();
         
-        // call each room to set its exits
+        this.currentRoom = startingWell;
         
         
     }
 
-    /**
-     * Create all the rooms and link their exits together.
-     */
-    private void createRooms()
-    {
-        // Room Creation
-        Room outside, theater, pub, lab, office, startingRoom;
-      
-        // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
-        
-        // initialise room exits
-        outside.setExit("east", theater);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
 
-        theater.setExit("west", outside);
-
-        pub.setExit("east", outside);
-
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        office.setExit("west", lab);
-        
-        //Generated Room
-        startingRoom = Generator.getStartingRoom();
-
-        currentRoom = startingRoom;  // start game outside
-    }
 
     /**
      *  Main play routine.  Loops until end of play.
@@ -147,7 +125,10 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription());
+        
+        
+        
+        currentRoom.printInitialDescription();
     }
 
     /**

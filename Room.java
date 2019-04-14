@@ -20,6 +20,7 @@ public class Room
 {
     private String title;
     private String description;
+    private String initialDescription;
     private HashMap<String, Room> exits;        // stores exits of this room.
     int xPos;
     int yPos;
@@ -36,6 +37,10 @@ public class Room
         exits = new HashMap<>();
     }
     
+    public String getTitle() {
+        return this.title;
+    }
+    
     public Room() {
      exits = new HashMap<>();   
     }
@@ -43,6 +48,19 @@ public class Room
     public void setCoordinates(int x, int y) {
         xPos = x;
         yPos = y;
+    }
+    
+    public void setInitialDescription(String desc) {
+        this.initialDescription = desc;
+    }
+    
+    public void printInitialDescription(){
+        
+        if (initialDescription != null) {
+            System.out.println(initialDescription); 
+        }
+        
+       
     }
     
     public int getX() {
