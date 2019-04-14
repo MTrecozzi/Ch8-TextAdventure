@@ -51,37 +51,44 @@ public class Game
      * Create the initial map and link the exits of all rooms within; 
      */
     // Initialize the Home Map
-    public void createHomeMap() {
-        
+    public void createHomeMap() {     
         // create Map for starting area
         homeMap = new Map("Mysterious Dungeon");
         
         // Create and initialize a room
         Room startingWell = new Room ("Mysterious Well");
         startingWell.setInitialDescription("You awake from a darkness, the space you're in contains a mysterious well");
-        
+        startingWell.setDescription("The room is vaguely lit with a blue menacing aura." + " A dark well sways lightly in the moonlight.");
         // Add it to the map.
         homeMap.setRoom(startingWell, 1,0);
         
         Room armory = new Room("The Armory");
+        armory.setInitialDescription("You arrive in a desolate armory, it hasn't been used in years by the looks of it.");
+        armory.setDescription("The abandoned armory of a dedicated smithy");
+        armory.setLookDetails("You spot a Shield reinforced with Steel");
         homeMap.setRoom(armory, 0,0);
         
-        Room bladeSmithy = new Room ("Abandoned Blade Smithy");
+        Room bladeSmithy = new Room ("The Abandoned Blade Smithy");
+        bladeSmithy.setDescription("A place where weapons of great power were forged");
         homeMap.setRoom(bladeSmithy, 2,0);
         
         Room prisonCell = new Room("The Darkened Cell");
+        prisonCell.setDescription("A cell where beings of great power were traded, contained and stocked");
         homeMap.setRoom(prisonCell, 1,1);
         
         Room torchRoom = new Room("The Kindled Room");
+        torchRoom.setDescription("A room is lit by fiery torches lining the walls");
         homeMap.setRoom(torchRoom, 2,1);
         
-        Room longHall = new Room("Endless Hall");
+        Room longHall = new Room("The Endless Hall");
+        longHall.setDescription("The hall protrudes north seemingly endlessly...");
         homeMap.setRoom(longHall, 2, 2);
         
-        Room diningRoom = new Room("Dilapidated Dining Hall");
+        Room diningRoom = new Room("The Dilapidated Banquet");
+        diningRoom.setDescription("A banquet hall is abandoned by its long lost proprietors");
         homeMap.setRoom(diningRoom, 2,3);
         
-        Room cellar = new Room("A dismal cellar, lost to time");
+        Room cellar = new Room("The Cellar, Lost To Time");
         homeMap.setRoom(cellar, 2,4);
         
         Room furnace = new Room("A roaring furnace lights a desolate attic");
@@ -89,8 +96,9 @@ public class Game
         
         // Call our current map to set the exits of all rooms within its rooms[][];
         homeMap.setExits();
-        
         this.currentRoom = startingWell;
+        
+        
         
         
     }
@@ -121,14 +129,18 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("You're in in an unfamiliar place...");
+        System.out.println("It's barely lit well enough to see.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         
         
         
         currentRoom.printInitialDescription();
+        currentRoom.visited = true;
+        currentRoom.printDescription();
+        currentRoom.printExits();
+        
     }
 
     /**
@@ -159,7 +171,9 @@ public class Game
                 wantToQuit = quit(command);
                 break;
             case LOOK:
-            System.out.println("You Look at the Current Room");
+            if (currentRoom.getLookDetails() != null){
+             System.out.println(currentRoom.getLookDetails());   
+            } else System.out.println("You inspect the room, but find no meaningful details");
             break;
         }
         return wantToQuit;
@@ -175,7 +189,7 @@ public class Game
     private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("through a forgotten dungeon");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -202,8 +216,18 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
+            
             currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+            System.out.println("You arrive in " + currentRoom.getTitle());
+            
+            if (!currentRoom.visited) {
+              currentRoom.printInitialDescription();
+              currentRoom.visited = true;
+            }
+            
+            currentRoom.printDescription();
+            currentRoom.printExits();
+
         }
     }
 

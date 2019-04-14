@@ -24,25 +24,47 @@ public class Room
     private HashMap<String, Room> exits;        // stores exits of this room.
     int xPos;
     int yPos;
+    
+    private String lookDetails;
+    
+    public boolean visited = false;
 
     /**
-     * Create a room described "description". Initially, it has
-     * no exits. "description" is something like "a kitchen" or
-     * "an open court yard".
-     * @param description The room's description.
+     * Create a room titled "title". Initially, it has
+     * no exits. "title" is the room's official name.
+     * @param title The room's title.
      */
-    public Room(String description) 
+    public Room(String title) 
     {
-        this.description = description;
+        this.title = title;
         exits = new HashMap<>();
     }
+    /**
+     * blank constructor overload
+     */
+    public Room() {
+     exits = new HashMap<>();   
+    }
     
+    /**
+     * Returns the room's offical name
+     * @return the String value of the room's title
+     */
     public String getTitle() {
         return this.title;
     }
     
-    public Room() {
-     exits = new HashMap<>();   
+    
+    /**
+     * Set the Details String of the room for when a player uses the look command
+     * @param lookDetails When using the look command in a room, prompt the player with this string
+     */
+    public void setLookDetails(String lookDetails) {
+        this.lookDetails = lookDetails;
+    }
+    
+    public String getLookDetails(){
+     return this.lookDetails;   
     }
     
     public void setCoordinates(int x, int y) {
@@ -51,6 +73,7 @@ public class Room
     }
     
     public void setInitialDescription(String desc) {
+        
         this.initialDescription = desc;
     }
     
@@ -84,15 +107,15 @@ public class Room
     public void setDescription(String description) {
         this.description = description;
     }
+    
+    public void printDescription(){
+     System.out.println(getDescription());   
+    }
 
     /**
      * @return The short description of the room
      * (the one that was defined in the constructor).
      */
-    public String getShortDescription()
-    {
-        return description;
-    }
 
     /**
      * Return a description of the room in the form:
@@ -100,9 +123,9 @@ public class Room
      *     Exits: north west
      * @return A long description of this room
      */
-    public String getLongDescription()
+    public String getDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return description;
     }
 
     /**
@@ -118,6 +141,10 @@ public class Room
             returnString += " " + exit;
         }
         return returnString;
+    }
+    
+    public void printExits() {
+     System.out.println(getExitString());   
     }
 
     /**
