@@ -68,7 +68,10 @@ public class Game
         armory.setInitialDescription("You arrive in a desolate armory, it hasn't been used in years by the looks of it.");
         armory.setDescription("The abandoned armory of a dedicated smithy");
         armory.setLookDetails("You spot a Shield reinforced with Steel");
-        armory.setTakeItem(new Item("Shield"));
+        
+        Item shield = new Item("Shield");
+        
+        armory.addItem(shield);
         homeMap.setRoom(armory, 0,0);
         
         Room bladeSmithy = new Room ("The Abandoned Blade Smithy");
@@ -97,7 +100,32 @@ public class Game
         Room furnace = new Room("A roaring furnace lights a desolate attic");
         homeMap.setRoom(furnace, 1,4);
         
-        // Call our current map to set the exits of all rooms within its rooms[][];
+        Room treasureHold =  new Room("An ancient room of antiquated valuables");
+        homeMap.setRoom(treasureHold, 0, 4);
+        
+        Room lightWell = new Room("The Lightwell");
+        lightWell.setDescription("Another Well, however this one shines and shimmers");
+        homeMap.setRoom(lightWell, 3, 4);
+        
+        Room enchanter = new Room("A room for enchanting objects and forging great power");
+        homeMap.setRoom(enchanter, 4, 4);
+        
+        Room quarters = new Room("Resting Quarters");
+        quarters.setDescription("A place to reflect and breathe for a moment");
+        quarters.addItem(new Item ("Pillow"));
+        homeMap.setRoom(quarters, 5, 4);
+        
+        Room lightGate = new Room("The Shimmering Gate");
+        lightGate.setDescription("Beyond this door lies a blinding prescence, you feel a great unknown before you.");
+        homeMap.setRoom(lightGate, 6,4);
+        
+        Room portalRoom = new Room("The Infinum Portal");
+        portalRoom.setDescription("A staggering portal lies in front of you, will you enter?");
+        homeMap.setRoom(portalRoom, 7,4);
+        
+        
+        
+        // Call our current map to set the exits of all rooms within its rooms[][] in accordance to their position;
         homeMap.setExits();
         this.currentRoom = startingWell;
         
@@ -179,8 +207,8 @@ public class Game
                 } else System.out.println("You inspect the room, but find no meaningful details");
                 break;
             case TAKE:
-                if (currentRoom.getTakeItem() != null) {
-                    player.addItem(currentRoom.getTakeItem());
+                if (currentRoom.getItem() != null) {
+                    player.addItem(currentRoom.getItem());
                     currentRoom.removeItem();
                     player.printItems();
                 }

@@ -1,6 +1,7 @@
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.ArrayList;
 
 /**
  * Class Room - a room in an adventure game.
@@ -25,7 +26,7 @@ public class Room
     int xPos;
     int yPos;
     
-    public Item takeItem;
+    public ArrayList<Item> collectibles = new ArrayList<Item>();
     
     private String lookDetails;
     
@@ -57,12 +58,23 @@ public class Room
     }
     
     
-    public void setTakeItem(Item item) {
-     this.takeItem = item;   
+    public void addItem(Item _item) {
+     collectibles.add(_item);   
     }
     
-    public Item getTakeItem() {
-     return this.takeItem;   
+    public Item takeItem() {
+     return collectibles.get(0);   
+    }
+    
+    public Item getItem() {
+        if (collectibles.size() == 1){
+             return collectibles.get(0);
+        }
+       else return null;
+    }
+    
+    public void removeItem() {
+        collectibles.set(0, null);
     }
     
     /**
@@ -96,9 +108,6 @@ public class Room
        
     }
     
-    public void removeItem() {
-     this.takeItem = null;   
-    }
     
     public int getX() {
      return this.xPos;   

@@ -7,9 +7,10 @@
  */
 public class Item
 {   // Completing the Item Class
-    private String name;
-    private int itemWeight;
-    private String takeString;
+    private String name; // the item's name
+    private int itemWeight; // the item's weight
+    private String takeString; // String to inform the player that they took the item.
+    private String lookString; // String that's displayed if this item is in the room when the player uses the look command.
 
     /**
      * Constructor for objects of class Item
@@ -18,6 +19,7 @@ public class Item
     {
         // initialise instance variables
        this.name = _name;
+       this.itemWeight = 0;
     }
     
     public Item(String _name, int _weight){
