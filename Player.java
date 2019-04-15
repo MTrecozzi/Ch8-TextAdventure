@@ -19,6 +19,15 @@ public class Player
   
     }
     
+    public int getTotalWeight() {
+     
+     int weight = inventory.stream().map(s -> s.getWeight())
+     .reduce(0, (total, count) -> total + count);
+     
+     return weight;
+        
+    }
+    
     public void addItem(Item itemToAdd) {
         inventory.add(itemToAdd);
         

@@ -127,9 +127,6 @@ public class Game
         homeMap.setExits();
         this.currentRoom = startingWell;
         
-        
-        
-        
     }
 
 
@@ -182,6 +179,7 @@ public class Game
         boolean wantToQuit = false;
 
         CommandWord commandWord = command.getCommandWord();
+        String subjectWord = command.getSecondWord();
 
         switch (commandWord) {
             case UNKNOWN:
@@ -205,11 +203,24 @@ public class Game
                 } else System.out.println("You inspect the room, but find no meaningful details");
                 break;
             case TAKE:
-                if (currentRoom.getItem() != null) {
-                    player.addItem(currentRoom.getItem());
-                    currentRoom.removeItem();
-                    player.printItems();
+            
+                if (subjectWord != null) {
+                    
+                    Item itemCheck = currentRoom.getItem(subjectWord);
+                    if (itemCheck != null) {
+                     player.addItem(itemCheck);
+                     player.printItems();
+                     
+                     // need to remove item from room
+                     
+                     currentRoom.collectibles.remove(itemCheck);
+                     
+                    }
                 }
+                else if (subjectWord == null){
+                    
+                } else 
+                System.out.println("Nothing to take");
                 break;    
         }
         return wantToQuit;

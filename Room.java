@@ -70,9 +70,25 @@ public class Room
        else return null;
     }
     
+    
+    public Item getItem(String itemName) {
+        
+        for (Item item : collectibles) {
+            
+            if (itemName.equalsIgnoreCase(item.getName())) {
+                return item;
+            }
+            
+        }
+        
+        return null;
+        
+    }
+    
     public void removeItem() {
         collectibles.set(0, null);
     }
+    
     
     /**
      * Set the Details String of the room for when a player uses the look command
