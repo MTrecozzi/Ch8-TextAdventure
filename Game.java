@@ -170,6 +170,9 @@ public class Game
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         
+        System.out.println("These words will guide you along the way");
+        parser.showCommands();
+        
         
         
         currentRoom.printInitialDescription();
