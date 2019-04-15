@@ -6,8 +6,9 @@
  * @version (a version number or a date)
  */
 public class Item
-{
+{   // Completing the Item Class
     private String name;
+    private int itemWeight;
     private String takeString;
 
     /**
@@ -19,8 +20,17 @@ public class Item
        this.name = _name;
     }
     
+    public Item(String _name, int _weight){
+     this.name = _name;
+     this.itemWeight = _weight;
+    }
+    
     public String getName() {
      return this.name;   
+    }
+    
+    public int getWeight() {
+        return this.itemWeight;
     }
 
     /**
