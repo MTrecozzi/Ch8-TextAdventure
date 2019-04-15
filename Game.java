@@ -43,7 +43,7 @@ public class Game
         // RandomizeMap();
     }
     
-    public static void main (String[] args) {
+    public static void main () {
         
         Game gameObject = new Game();
         gameObject.play();
