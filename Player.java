@@ -35,10 +35,13 @@ public class Player
     
     public void printItems() {
         
+        System.out.println("");
         System.out.println("Inventory: ");
         
         inventory.stream()
         .forEach(i -> System.out.println(i.getName()));
+        
+        System.out.println("Carry Weight: " + getTotalWeight());
         
     }
 

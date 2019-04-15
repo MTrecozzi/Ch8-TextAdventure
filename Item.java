@@ -22,6 +22,25 @@ public class Item
        this.itemWeight = 0;
     }
     
+    public Item(String _name, String _takeString, int _weight){
+        this.name = _name;
+        this.takeString = _takeString;
+        this.itemWeight = _weight;
+        
+    }
+    
+    public void setLookDetails(String lookDetails){
+        this.lookString =  lookDetails;
+    }
+    
+    public void printTakeString(){
+     System.out.println(this.takeString);   
+    }
+    
+    public void printLookString() {
+     System.out.println(this.lookString);   
+    }
+    
     public Item(String _name, int _weight){
      this.name = _name;
      this.itemWeight = _weight;

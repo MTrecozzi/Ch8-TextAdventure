@@ -13,6 +13,8 @@
  * @version 4/14/19
  */
 
+import java.util.Stack;
+
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -27,6 +29,8 @@ public class Game
     // Change to singlton system, refrence old canvas project
     private Player player = new Player();
     private Map homeMap;
+    
+    private Stack<Room> previousRooms = new Stack<>();
 
         
     /**
@@ -63,12 +67,11 @@ public class Game
         homeMap.setRoom(startingWell, 1,0);
         
         Room armory = new Room("The Armory");
-        armory.setInitialDescription("You arrive in a desolate armory, it hasn't been used in years by the looks of it.");
-        armory.setDescription("The abandoned armory of a dedicated smithy");
-        armory.setLookDetails("You spot a Shield reinforced with Steel");
+        armory.setInitialDescription("A desolate armory, it hasn't been used in years by the looks of it.");
+        armory.setDescription("The walls are of heavy stone, there are anvils and tools for smithing.");
         
-        Item shield = new Item("Shield");
-        
+        Item shield = new Item("Shield", "You take the shield and carry it with you", 5);
+        shield.setLookDetails("a 'Shield' reinforced with Steel");
         armory.addItem(shield);
         homeMap.setRoom(armory, 0,0);
         
@@ -120,11 +123,10 @@ public class Game
         Room portalRoom = new Room("The Infinum Portal");
         portalRoom.setDescription("A staggering portal lies in front of you, will you enter?");
         homeMap.setRoom(portalRoom, 7,4);
-        
-        
-        
+                
         // Call our current map to set the exits of all rooms within its rooms[][] in accordance to their position;
         homeMap.setExits();
+        //
         this.currentRoom = startingWell;
         
     }
@@ -198,9 +200,9 @@ public class Game
                 wantToQuit = quit(command);
                 break;
             case LOOK:
-                if (currentRoom.getLookDetails() != null){
-                 System.out.println(currentRoom.getLookDetails());   
-                } else System.out.println("You inspect the room, but find no meaningful details");
+                if (currentRoom.collectibles.size() > 0){
+                 currentRoom.printLookDetails();   
+                } else System.out.println("You find no meaningful details");
                 break;
             case TAKE:
             
@@ -208,6 +210,8 @@ public class Game
                     
                     Item itemCheck = currentRoom.getItem(subjectWord);
                     if (itemCheck != null) {
+                        
+                     itemCheck.printTakeString();
                      player.addItem(itemCheck);
                      player.printItems();
                      
@@ -219,9 +223,32 @@ public class Game
                 }
                 else if (subjectWord == null){
                     
+                    Item itemCheck = currentRoom.getItem();
+                    
+                    // turn into get item method
+                    if (itemCheck != null) {
+                        
+                     itemCheck.printTakeString();   
+                     
+                     player.addItem(itemCheck);
+                     player.printItems();
+                     
+                     // need to remove item from room
+                     
+                     currentRoom.collectibles.remove(itemCheck);
+                        
+                    }
+                    
                 } else 
                 System.out.println("Nothing to take");
-                break;    
+                break;   
+                case BACK:
+                
+                System.out.println("You retrace your steps...");
+                // sets current Room to the previous room, and refreshes the stack
+                loadRoom(previousRooms.pop());
+                
+                break;
         }
         return wantToQuit;
     }
@@ -264,6 +291,7 @@ public class Game
         }
         else {
             
+            previousRooms.push(currentRoom);
             currentRoom = nextRoom;
             System.out.println("You arrive in " + currentRoom.getTitle());
             
@@ -276,6 +304,21 @@ public class Game
             currentRoom.printExits();
 
         }
+    }
+    
+    private void loadRoom(Room nextRoom){
+        
+        currentRoom = nextRoom;
+        System.out.println("You arrive in " + currentRoom.getTitle());
+        
+        if (!currentRoom.visited) {
+              currentRoom.printInitialDescription();
+              currentRoom.visited = true;
+            }
+            
+            currentRoom.printDescription();
+            currentRoom.printExits();
+        
     }
 
     /** 

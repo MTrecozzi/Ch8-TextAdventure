@@ -25,7 +25,7 @@ public class Room
     int yPos;
     
     public ArrayList<Item> collectibles = new ArrayList<Item>();   
-    private String lookDetails;
+    private String extraDetails;
     
     public boolean visited = false;
 
@@ -92,14 +92,22 @@ public class Room
     
     /**
      * Set the Details String of the room for when a player uses the look command
-     * @param lookDetails When using the look command in a room, prompt the player with this string
+     * @param extraDetails When using the look command in a room, prompt the player with this string
      */
-    public void setLookDetails(String lookDetails) {
-        this.lookDetails = lookDetails;
+    public void setextraDetails(String extraDetails) {
+        this.extraDetails = extraDetails;
     }
     
-    public String getLookDetails(){
-     return this.lookDetails;   
+    public void printLookDetails(){
+     System.out.println("You search the room thoroughly, you find...");
+     
+     for(Item item : collectibles){
+         item.printLookString();
+        }
+        
+        if (this.extraDetails != null){
+         System.out.println(this.extraDetails); 
+        }
     }
     
     public void setCoordinates(int x, int y) {
