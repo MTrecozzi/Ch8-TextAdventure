@@ -1,9 +1,8 @@
-
 /**
- * Write a description of class Generator here.
+ * A class for procedurally generating other key classes such as Rooms and Items
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Matthew Trecozzi
+ * @version 4/14/19
  */
 
 import java.util.HashMap;

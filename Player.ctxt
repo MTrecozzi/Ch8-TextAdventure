@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Player
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Player\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ The\ player\ is\ the\ central\ unit\ that\ navigates\ a\ map\ and\ interacts\ with\ the\ world\r\n\r\n\ @author\ Matthew\ Trecozzi\r\n\ @version\ 4/14/19\r\n
 comment1.params=
 comment1.target=Player()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Player\r\n

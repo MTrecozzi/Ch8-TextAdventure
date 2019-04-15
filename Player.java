@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 /**
- * Write a description of class Player here.
+ * The player is the central unit that navigates a map and interacts with the world
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Matthew Trecozzi
+ * @version 4/14/19
  */
 public class Player
 {

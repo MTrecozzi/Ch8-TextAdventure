@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Item here.
+ * An Item class that contains values for an Item's name and weight
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Matthew Trecozzi
+ * @version 4/14/19
  */
 public class Item
 {   // Completing the Item Class
