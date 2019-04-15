@@ -27,7 +27,7 @@ public class Game
     private HashMap<Integer, String> rooms = new HashMap<>();
     
     // Change to singlton system, refrence old canvas project
-    private Player player = new Player();
+    private Player player;
     private Map homeMap;
     
     private Stack<Room> previousRooms = new Stack<>();
@@ -38,7 +38,7 @@ public class Game
      */
     public Game() 
     {
-
+        player = Player.getPlayer();
         createHomeMap();
         parser = new Parser();
         
@@ -93,7 +93,9 @@ public class Game
         
         Room diningRoom = new Room("The Dilapidated Banquet");
         diningRoom.setDescription("A banquet hall is abandoned by its long lost proprietors");
-        Edible apple = new Edible("Apple", 10);
+        HealingItem apple = new HealingItem("Apple", 10);
+        apple.setLookDetails("A mystical looking 'apple'.");
+        diningRoom.addItem(apple);
         
         homeMap.setRoom(diningRoom, 2,3);
         
@@ -216,8 +218,12 @@ public class Game
                     
                     Item itemCheck = currentRoom.getItem(subjectWord);
                     if (itemCheck != null) {
+                     
                         
-                     itemCheck.printTakeString();
+                     if (itemCheck.takeString != null) {
+                        itemCheck.printTakeString(); 
+                    } else System.out.println("You take the item");
+                        
                      player.addItem(itemCheck);
                      player.printItems();
                      
@@ -233,7 +239,8 @@ public class Game
                     
                     // turn into get item method
                     if (itemCheck != null) {
-                        
+                     
+                     
                      itemCheck.printTakeString();   
                      
                      player.addItem(itemCheck);
@@ -265,17 +272,8 @@ public class Game
                 
                 if (subjectWord != null){
                     
-                    Item itemToEat = player.getItem(subjectWord);
                     
-                    if (itemToEat != null){
-                        itemToEat.eat();
-                        if (itemToEat instanceof Edible){
-                            player.inventory.remove(itemToEat);
-                            
-                            Edible toEdible = (Edible)itemToEat;
-                            player.health += toEdible.healing;
-                        }
-                    }
+                    player.eat(subjectWord);
                     
                 }
                 

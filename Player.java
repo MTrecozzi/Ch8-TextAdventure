@@ -10,6 +10,7 @@ public class Player
 {
     // instance variables - replace the example below with your own
     ArrayList<Item> inventory = new ArrayList<>();
+    public static Player player;
     
     public int health = 15;
 
@@ -19,6 +20,16 @@ public class Player
     public Player()
     {
   
+    }
+    
+    public static Player getPlayer(){
+     
+     if (player == null){
+         player = new Player();
+        }
+        
+        return player;
+        
     }
     
     public Item getItem(String itemName){
@@ -34,6 +45,19 @@ public class Player
         
     }
     
+    public void eat(String _item){
+        
+        Item itemToEat = getItem(_item);
+        
+        if (itemToEat != null){
+            
+               itemToEat.eat();
+               inventory.remove(itemToEat);
+               
+        }
+        
+    }
+    
     public int getTotalWeight() {
      
      int weight = inventory.stream().map(s -> s.getWeight())
@@ -45,6 +69,8 @@ public class Player
     
     public void addItem(Item itemToAdd) {
         inventory.add(itemToAdd);
+        
+        
         
     }
     
