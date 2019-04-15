@@ -10,6 +10,8 @@ public class Player
 {
     // instance variables - replace the example below with your own
     ArrayList<Item> inventory = new ArrayList<>();
+    
+    public int health = 15;
 
     /**
      * Constructor for objects of class Player
@@ -17,6 +19,19 @@ public class Player
     public Player()
     {
   
+    }
+    
+    public Item getItem(String itemName){
+        
+        
+        for(Item item : inventory){
+         if (item.getName().equalsIgnoreCase(itemName)){
+         return item;    
+            }
+        }
+        
+        return null;
+        
     }
     
     public int getTotalWeight() {
@@ -35,7 +50,7 @@ public class Player
     
     public void printItems() {
         
-        System.out.println("");
+        System.out.println("Health: " + health);
         System.out.println("Inventory: ");
         
         inventory.stream()

@@ -7,10 +7,10 @@
  */
 public class Item
 {   // Completing the Item Class
-    private String name; // the item's name
-    private int itemWeight; // the item's weight
-    private String takeString; // String to inform the player that they took the item.
-    private String lookString; // String that's displayed if this item is in the room when the player uses the look command.
+    protected String name; // the item's name
+    protected int itemWeight; // the item's weight
+    protected String takeString; // String to inform the player that they took the item.
+    protected String lookString; // String that's displayed if this item is in the room when the player uses the look command.
 
     /**
      * Constructor for objects of class Item
@@ -20,6 +20,10 @@ public class Item
         // initialise instance variables
        this.name = _name;
        this.itemWeight = 0;
+    }
+    
+    public void eat(){
+        System.out.println("You can't eat your " + this.name);
     }
     
     public Item(String _name, String _takeString, int _weight){

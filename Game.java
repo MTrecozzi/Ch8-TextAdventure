@@ -76,15 +76,15 @@ public class Game
         homeMap.setRoom(armory, 0,0);
         
         Room bladeSmithy = new Room ("The Abandoned Blade Smithy");
-        bladeSmithy.setDescription("A place where weapons of great power were forged");
+        bladeSmithy.setDescription("Rusted blades adorn the abandoned weapons site");
         homeMap.setRoom(bladeSmithy, 2,0);
         
         Room prisonCell = new Room("The Darkened Cell");
-        prisonCell.setDescription("A cell where beings of great power were traded, contained and stocked");
+        prisonCell.setDescription("Empty prison cells fill the area, many of them broken and shattered.");
         homeMap.setRoom(prisonCell, 1,1);
         
         Room torchRoom = new Room("The Kindled Room");
-        torchRoom.setDescription("A room is lit by fiery torches lining the walls");
+        torchRoom.setDescription("Fiery torches line the walls");
         homeMap.setRoom(torchRoom, 2,1);
         
         Room longHall = new Room("The Endless Hall");
@@ -93,19 +93,25 @@ public class Game
         
         Room diningRoom = new Room("The Dilapidated Banquet");
         diningRoom.setDescription("A banquet hall is abandoned by its long lost proprietors");
+        Edible apple = new Edible("Apple", 10);
+        
         homeMap.setRoom(diningRoom, 2,3);
         
         Room cellar = new Room("The Cellar, Lost To Time");
+        cellar.setDescription("The room eminates an ancient, primordial aura");
         homeMap.setRoom(cellar, 2,4);
         
-        Room furnace = new Room("A roaring furnace lights a desolate attic");
+        Room furnace = new Room("The Raging Furnace");
+        furnace.setDescription("A roaring furnace lights the desolate attic");
         homeMap.setRoom(furnace, 1,4);
         
         Room treasureHold =  new Room("An ancient room of antiquated valuables");
+        treasureHold.setDescription("Gold and other valuables shine brightly, many ornate pieces are too large to carry");
         homeMap.setRoom(treasureHold, 0, 4);
         
         Room lightWell = new Room("The Lightwell");
-        lightWell.setDescription("Another Well, however this one shines and shimmers");
+        lightWell.setInitialDescription("You come across another Well, however this one shines and shimmers");
+        lightWell.setDescription("The second well fills you with home and urges you east");
         homeMap.setRoom(lightWell, 3, 4);
         
         Room enchanter = new Room("A room for enchanting objects and forging great power");
@@ -246,7 +252,32 @@ public class Game
                 
                 System.out.println("You retrace your steps...");
                 // sets current Room to the previous room, and refreshes the stack
-                loadRoom(previousRooms.pop());
+                
+                if (previousRooms.size() > 0){
+                    loadRoom(previousRooms.pop());
+                } else {
+                 System.out.println("but you could not gain any sense of direction");   
+                }
+                   
+                break;
+                
+                case EAT:
+                
+                if (subjectWord != null){
+                    
+                    Item itemToEat = player.getItem(subjectWord);
+                    
+                    if (itemToEat != null){
+                        itemToEat.eat();
+                        if (itemToEat instanceof Edible){
+                            player.inventory.remove(itemToEat);
+                            
+                            Edible toEdible = (Edible)itemToEat;
+                            player.health += toEdible.healing;
+                        }
+                    }
+                    
+                }
                 
                 break;
         }
