@@ -46,6 +46,10 @@ public class Room
      exits = new HashMap<>();   
     }
     
+    public void enter(){
+     System.out.println("There is no where to enter further in this room.");   
+    }
+    
     /**
      * Returns the room's offical name
      * @return the String value of the room's title
@@ -57,6 +61,10 @@ public class Room
     
     public void addItem(Item _item) {
      collectibles.add(_item);   
+    }
+    
+    public boolean hasPorta(){
+        return false;
     }
     
     public Item takeItem() {

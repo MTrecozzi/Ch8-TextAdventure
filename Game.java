@@ -21,6 +21,8 @@ import java.util.ArrayList;
 public class Game 
 {
     
+    private int turnTimer = 40;
+    
     public static Game game;
 
     private Parser parser;
@@ -149,7 +151,7 @@ public class Game
         lightGate.setDescription("Beyond this door lies a blinding prescence, you feel a great unknown before you.");
         homeMap.setRoom(lightGate, 6,4);
         
-        Room portalRoom = new Room("The Infinum Portal");
+        Room portalRoom = new PortalRoom("The Infinum Portal");
         portalRoom.setDescription("A staggering portal lies in front of you, will you enter?");
         homeMap.setRoom(portalRoom, 7,4);
                 
@@ -322,11 +324,13 @@ public class Game
                 break;
                 
                 case USE:
-                
                 if (subjectWord != null){
                  player.use(subjectWord);   
                 }
+                break;
                 
+                case ENTER:
+                currentRoom.enter();
                 break;
         }
         return wantToQuit;
@@ -370,6 +374,12 @@ public class Game
         }
         else {
             
+            turnTimer--;
+            System.out.println("Moves Left:" + turnTimer);
+            if(turnTimer <= 0){
+                lose();
+            }
+            
             previousRooms.push(currentRoom);
             currentRoom = nextRoom;
             System.out.println("You arrive in " + currentRoom.getTitle());
@@ -381,8 +391,18 @@ public class Game
             
             currentRoom.printDescription();
             currentRoom.printExits();
+            
+            
+            
+            
 
         }
+    }
+    
+    public void lose(){
+        System.out.println("You lost! Type 'quit' to quit and try again, or continue to keep playing\n in exploration mode!");
+        turnTimer = 100;
+        
     }
     
     private void loadRoom(Room nextRoom){
