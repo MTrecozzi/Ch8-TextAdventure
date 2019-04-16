@@ -33,6 +33,10 @@ public class Item
         
     }
     
+    public void use() {
+        System.out.println("You can't use this");
+    }
+    
     public void setLookDetails(String lookDetails){
         this.lookString =  lookDetails;
     }
@@ -42,7 +46,12 @@ public class Item
     }
     
     public void printLookString() {
-     System.out.println(this.lookString);   
+        
+        if (this.lookString != null){
+            System.out.println(this.lookString);  
+        }
+        
+        else System.out.println("a " + this.name);
     }
     
     public Item(String _name, int _weight){

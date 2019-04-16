@@ -58,6 +58,16 @@ public class Player
         
     }
     
+    public void use(String _item){
+     
+     Item itemToUse = getItem(_item);
+     if (itemToUse != null){
+         itemToUse.use();
+         inventory.remove(itemToUse);
+        }
+        
+    }
+    
     public int getTotalWeight() {
      
      int weight = inventory.stream().map(s -> s.getWeight())

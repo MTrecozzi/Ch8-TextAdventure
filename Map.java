@@ -1,4 +1,4 @@
-
+import java.util.Random;
 /**
  * Write a description of class Map here.
  *
@@ -83,6 +83,23 @@ public class Map
         if (x >= 0 && y >= 0) {
             rooms[x][y] = room;
         }
+        
+    }
+    
+    public Room returnRandomRoom(){
+        
+        Room returnRoom = null;
+        Random rand = new Random();
+        do {
+            
+            int x = rand.nextInt(roomSize);
+            int y = rand.nextInt(roomSize);
+            
+            returnRoom = getRoom(x, y);
+            
+        } while (returnRoom == null);
+        
+        return returnRoom;
         
     }
     

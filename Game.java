@@ -20,6 +20,9 @@ import java.util.ArrayList;
 
 public class Game 
 {
+    
+    public static Game game;
+
     private Parser parser;
     private Room currentRoom;
     
@@ -32,12 +35,20 @@ public class Game
     
     private Stack<Room> previousRooms = new Stack<>();
 
+    
+    public static void main () {
+        
+        Game gameObject = getGame();
+        gameObject.play();
+        
+    }
         
     /**
      * Create the game and initialise its internal map.
      */
     public Game() 
     {
+
         player = Player.getPlayer();
         createHomeMap();
         parser = new Parser();
@@ -45,12 +56,16 @@ public class Game
         // RandomizeMap();
     }
     
-    public static void main () {
+    public static Game getGame() {
+     if (game == null){
+         game = new Game();
+        }
         
-        Game gameObject = new Game();
-        gameObject.play();
-        
+        return game;
     }
+  
+    
+    
     /**
      * Create the initial map and link the exits of all rooms within; 
      */
@@ -77,6 +92,10 @@ public class Game
         
         Room bladeSmithy = new Room ("The Abandoned Blade Smithy");
         bladeSmithy.setDescription("Rusted blades adorn the abandoned weapons site");
+        // creating an item to populate the bladeSmithy Room
+        Weapon sword = new Weapon("Sword", 8);
+        bladeSmithy.addItem(sword);
+        
         homeMap.setRoom(bladeSmithy, 2,0);
         
         Room prisonCell = new Room("The Darkened Cell");
@@ -109,6 +128,8 @@ public class Game
         
         Room treasureHold =  new Room("An ancient room of antiquated valuables");
         treasureHold.setDescription("Gold and other valuables shine brightly, many ornate pieces are too large to carry");
+        Locket magicLocket = new Locket("Locket");
+        treasureHold.addItem(magicLocket);
         homeMap.setRoom(treasureHold, 0, 4);
         
         Room lightWell = new Room("The Lightwell");
@@ -164,14 +185,20 @@ public class Game
      */
     private void printWelcome()
     {
-        System.out.println();
+        //System.out.println();
         System.out.println("You're in in an unfamiliar place...");
         System.out.println("It's barely lit well enough to see.");
+        System.out.println();
+       
+        System.out.println("These words will guide you along the way");
+        parser.showCommands();
+        System.out.println("");
+        
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         
-        System.out.println("These words will guide you along the way");
-        parser.showCommands();
+        System.out.println("Hint: You will need to 'Look' in order to \nfind valuable information about the items you can 'take'.");
+        System.out.println("");
         
         
         
@@ -179,6 +206,16 @@ public class Game
         currentRoom.visited = true;
         currentRoom.printDescription();
         currentRoom.printExits();
+        
+    }
+    
+    public void randomlyTeleport(){
+     
+        System.out.println("Magic fills the air as you lose yourself in a blinding flash");
+        
+        
+        
+        loadRoom(homeMap.returnRandomRoom());
         
     }
 
@@ -225,7 +262,7 @@ public class Game
                         
                      if (itemCheck.takeString != null) {
                         itemCheck.printTakeString(); 
-                    } else System.out.println("You take the item");
+                    } else System.out.println("You take the " + itemCheck.getName());
                         
                      player.addItem(itemCheck);
                      player.printItems();
@@ -243,8 +280,10 @@ public class Game
                     // turn into get item method
                     if (itemCheck != null) {
                      
-                     
-                     itemCheck.printTakeString();   
+                     if (itemCheck.takeString != null){
+                         itemCheck.printTakeString(); 
+                        } else System.out.println("You take the " + itemCheck.getName());
+                       
                      
                      player.addItem(itemCheck);
                      player.printItems();
@@ -278,6 +317,14 @@ public class Game
                     
                     player.eat(subjectWord);
                     
+                }
+                
+                break;
+                
+                case USE:
+                
+                if (subjectWord != null){
+                 player.use(subjectWord);   
                 }
                 
                 break;
