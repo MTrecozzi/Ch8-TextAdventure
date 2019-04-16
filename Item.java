@@ -21,30 +21,42 @@ public class Item
        this.name = _name;
        this.itemWeight = 0;
     }
-    
+    /**
+     * Call this method when the eat command is used on this object within the inventory;
+     */
     public void eat(){
         System.out.println("You can't eat your " + this.name);
     }
-    
+    /**
+     * Additional Overload Constructor
+     */
     public Item(String _name, String _takeString, int _weight){
         this.name = _name;
         this.takeString = _takeString;
         this.itemWeight = _weight;
         
     }
-    
+    /**
+     * Call this method when the use command is used on this object within the inventory;
+     */
     public void use() {
         System.out.println("You can't use this");
     }
-    
+    /**
+     * Set the details that read when you look for this item within a room
+     */
     public void setLookDetails(String lookDetails){
         this.lookString =  lookDetails;
     }
-    
+    /**
+     * Print the String that reads when you take this item
+     */
     public void printTakeString(){
      System.out.println(this.takeString);   
     }
-    
+    /**
+     * Print the String that reads when you see this item
+     */
     public void printLookString() {
         
         if (this.lookString != null){
@@ -53,16 +65,23 @@ public class Item
         
         else System.out.println("a " + this.name);
     }
-    
+    /**
+     * @param _name Name of the item
+     * @param _weight Weight of the item
+     */
     public Item(String _name, int _weight){
      this.name = _name;
      this.itemWeight = _weight;
     }
-    
+    /**
+     * @return name Returns this item's String name;
+     */
     public String getName() {
      return this.name;   
     }
-    
+    /**
+     * @return itemWeight The Item's weight
+     */
     public int getWeight() {
         return this.itemWeight;
     }

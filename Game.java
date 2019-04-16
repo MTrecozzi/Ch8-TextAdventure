@@ -12,18 +12,13 @@
  * @author  Matthew Trecozzi
  * @version 4/14/19
  */
-
 import java.util.Stack;
-
 import java.util.HashMap;
 import java.util.ArrayList;
-
 public class Game 
 {
-    
-    private int turnTimer = 40;
-    
-    public static Game game;
+    private int turnTimer = 40; // default turn timer
+    public static Game game; // Singleton game object
 
     private Parser parser;
     private Room currentRoom;
@@ -37,7 +32,9 @@ public class Game
     
     private Stack<Room> previousRooms = new Stack<>();
 
-    
+    /**
+     * Main method used to launch the game
+     */
     public static void main () {
         
         Game gameObject = getGame();
@@ -58,6 +55,9 @@ public class Game
         // RandomizeMap();
     }
     
+    /**
+     * @return game Get the Singleton game Object
+     */
     public static Game getGame() {
      if (game == null){
          game = new Game();
@@ -70,6 +70,7 @@ public class Game
     
     /**
      * Create the initial map and link the exits of all rooms within; 
+     * Create item objects and add them to rooms deliberately;
      */
     // Initialize the Home Map
     public void createHomeMap() {     
@@ -210,7 +211,9 @@ public class Game
         currentRoom.printExits();
         
     }
-    
+    /**
+     * Changes the current room to one that is randomly chosen and teleported too.
+     */
     public void randomlyTeleport(){
      
         System.out.println("Magic fills the air as you lose yourself in a blinding flash");
@@ -336,7 +339,6 @@ public class Game
         return wantToQuit;
     }
 
-    // implementations of user commands:
 
     /**
      * Print out some help information.
@@ -399,12 +401,21 @@ public class Game
         }
     }
     
+    
+    /**
+     * Prompt the user that they have officially lost, but may keep playing to explore.
+     */
     public void lose(){
         System.out.println("You lost! Type 'quit' to quit and try again, or continue to keep playing\n in exploration mode!");
         turnTimer = 100;
         
     }
     
+    
+    /**
+     * @param nextRoom the next Room to load
+     * Load the player into a specific room
+     */
     private void loadRoom(Room nextRoom){
         
         currentRoom = nextRoom;

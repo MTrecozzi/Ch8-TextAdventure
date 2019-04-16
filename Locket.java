@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Locket here.
+ * The Locket class is an extension of Item with a special 'use' functionality
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Matthew Trecozzi
+ * @version 4/15/19
  */
 public class Locket extends Item
 {
@@ -19,7 +19,9 @@ public class Locket extends Item
        super(_name);
        
     }
-
+    /**
+     * When used by the player, have the Game object randomly teleport them to a completely random room;
+     */
     public void use() {
         
         Game.getGame().randomlyTeleport();

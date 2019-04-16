@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Weapon
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Weapon\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ The\ Weapon\ Class\ is\ an\ extension\ of\ Item\ that\ includes\ a\ damage\ value\r\n\r\n\ @author\ Matthew\ Trecozzi\r\n\ @version\ 4/15/19\r\n
 comment1.params=name\ _damage
 comment1.target=Weapon(java.lang.String,\ int)
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Weapon\r\n
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Weapon\r\n\ @param\ name\ String\ for\ name\ Value\r\n\ @param\ _damage\ Weapon's\ damage\ Value\r\n
 numComments=2

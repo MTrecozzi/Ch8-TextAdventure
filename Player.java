@@ -22,6 +22,9 @@ public class Player
   
     }
     
+    /**
+     * @return Singleton object player 
+     */  
     public static Player getPlayer(){
      
      if (player == null){
@@ -31,7 +34,10 @@ public class Player
         return player;
         
     }
-    
+     /**
+     * @param itemName String name of item to get from inventory
+     * Searches the player's inventory for an item Object
+     */
     public Item getItem(String itemName){
         
         
@@ -44,7 +50,9 @@ public class Player
         return null;
         
     }
-    
+    /**
+     * Attempts to eat an item from the player's inventory
+     */
     public void eat(String _item){
         
         Item itemToEat = getItem(_item);
@@ -57,7 +65,9 @@ public class Player
         }
         
     }
-    
+    /**
+     * Attempts to use an item from the player's inventory
+     */
     public void use(String _item){
      
      Item itemToUse = getItem(_item);
@@ -67,7 +77,9 @@ public class Player
         }
         
     }
-    
+    /**
+     * @return weight Player's total carryWeight;
+     */
     public int getTotalWeight() {
      
      int weight = inventory.stream().map(s -> s.getWeight())

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 /**
  * Class Room - a room in an adventure game.
  *
- *
  * A "Room" represents one location in the scenery of the game.  It is 
  * connected to other rooms via exits.  For each existing exit, the room 
  * stores a reference to the neighboring room.
@@ -46,6 +45,10 @@ public class Room
      exits = new HashMap<>();   
     }
     
+    
+    /**
+     * Called when the player attempts the enter comamnd while in this room
+     */
     public void enter(){
      System.out.println("There is no where to enter further in this room.");   
     }
@@ -58,19 +61,30 @@ public class Room
         return this.title;
     }
     
-    
+    /**
+     * @param _item Item to add to the room
+     * Adds an Item to this room's collectibles's collection;
+     */
     public void addItem(Item _item) {
      collectibles.add(_item);   
     }
-    
+    /**
+     * @return Returns whether or not the room has a portal;
+     */
     public boolean hasPorta(){
         return false;
     }
     
+    /**
+     * takes an item from the collectibles array at index 0
+     */
     public Item takeItem() {
      return collectibles.get(0);   
     }
     
+    /**
+     * Gets the sole item in a room if there is only one;
+     */
     public Item getItem() {
         if (collectibles.size() == 1){
              return collectibles.get(0);
@@ -78,7 +92,10 @@ public class Room
        else return null;
     }
     
-    
+    /**
+     * @param itemName String name of the item to search the collection for
+     * @return returns the specfic item from the collection;
+     */
     public Item getItem(String itemName) {
         
         for (Item item : collectibles) {
@@ -93,6 +110,9 @@ public class Room
         
     }
     
+    /**
+     * Removes an item form the collection;
+     */
     public void removeItem() {
         collectibles.set(0, null);
     }
@@ -105,7 +125,9 @@ public class Room
     public void setextraDetails(String extraDetails) {
         this.extraDetails = extraDetails;
     }
-    
+    /**
+     * Prints the resposne to the user's look command in this room;
+     */
     public void printLookDetails(){
      System.out.println("You search the room thoroughly, you find...");
      
@@ -118,16 +140,23 @@ public class Room
         }
     }
     
+    /**
+     * Set the coordinates of this room;
+     */
     public void setCoordinates(int x, int y) {
         xPos = x;
         yPos = y;
     }
-    
+    /**
+     * Set the description of the room that reads as a first impression
+     */
     public void setInitialDescription(String desc) {
         
         this.initialDescription = desc;
     }
-    
+    /**
+     * Print the room's first impression String
+     */
     public void printInitialDescription(){
         
         if (initialDescription != null) {
@@ -137,11 +166,15 @@ public class Room
        
     }
     
-    
+    /**
+     * @return xPosition
+     */
     public int getX() {
      return this.xPos;   
     }
-    
+    /**
+     * @return yPosition
+     */
     public int getY() {
      return this.yPos;   
     }
@@ -155,11 +188,15 @@ public class Room
     {
         exits.put(direction, neighbor);
     }
-    
+    /**
+     * Set the room's description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
-    
+    /**
+     * print the room's description
+     */
     public void printDescription(){
      System.out.println(getDescription());   
     }
@@ -194,7 +231,9 @@ public class Room
         }
         return returnString;
     }
-    
+    /**
+     * Print the room's exits
+     */
     public void printExits() {
      System.out.println(getExitString());   
     }

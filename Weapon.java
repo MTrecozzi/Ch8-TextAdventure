@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Weapon here.
+ * The Weapon Class is an extension of Item that includes a damage value
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Matthew Trecozzi
+ * @version 4/15/19
  */
 public class Weapon extends Item
 {
@@ -12,6 +12,8 @@ public class Weapon extends Item
 
     /**
      * Constructor for objects of class Weapon
+     * @param name String for name Value
+     * @param _damage Weapon's damage Value
      */
     public Weapon(String name, int _damage)
     {

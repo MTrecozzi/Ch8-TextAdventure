@@ -1,11 +1,13 @@
 #BlueJ class context
 comment0.target=PortalRoom
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ PortalRoom\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ A\ subclass\ of\ Room,\ Portal\ Room\ allows\ you\ to\ use\ the\ enter\ command\ to\ enter\ the\ portal\ and\ win\ the\ game,\ if\ you're\ currently\ in\ this\ room.\r\n\r\n\ @author\ Matthew\ Trecozzi\r\n\ @version\ 4/15/19\r\n
 comment1.params=_title
 comment1.target=PortalRoom(java.lang.String)
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ PortalRoom\r\n
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ PortalRoom\r\n\ @param\ _title\ The\ title\ of\ the\ Room.\r\n
 comment2.params=
 comment2.target=void\ enter()
+comment2.text=\r\n\ This\ method\ is\ called\ when\ the\ player\ attempts\ the\ 'enter'\ command\ while\ in\ this\ room\r\n\ Entering\ the\ portal\ room\ wins\ the\ game.\r\n
 comment3.params=
 comment3.target=boolean\ hasPortal()
+comment3.text=\r\n\ @return\ Returns\ activePortal\ Whether\ or\ not\ the\ portal\ is\ active\r\n
 numComments=4
