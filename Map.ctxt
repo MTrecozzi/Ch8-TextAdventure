@@ -1,18 +1,22 @@
 #BlueJ class context
 comment0.target=Map
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Map\ here.\r\n\r\n\ @author\ Matthew\ Trecozzi\r\n\ @version\ 4/14/19\r\n
+comment0.text=\r\n\ The\ map\ class\ stores\ a\ specific\ [][]\ of\ Rooms,\ used\ to\ organize\ the\ game\ world\ in\ 2D\ space\ and\ provide\ room\ management.\r\n\r\n\ @author\ Matthew\ Trecozzi\r\n\ @version\ 4/14/19\r\n
 comment1.params=name
 comment1.target=Map(java.lang.String)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Map\r\n
 comment2.params=
 comment2.target=void\ setExits()
+comment2.text=\r\n\ Set\ the\ Exits\ of\ all\ room's\ within\ the\ rooms[][];\r\n
 comment3.params=x\ y
 comment3.target=void\ setExit(int,\ int)
+comment3.text=\r\n\ Set\ the\ exit\ of\ a\ specific\ room\r\n
 comment4.params=room\ x\ y
 comment4.target=void\ setRoom(Room,\ int,\ int)
 comment4.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\r\n\ @param\ \ y\ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ the\ sum\ of\ x\ and\ y\r\n
 comment5.params=
 comment5.target=Room\ returnRandomRoom()
+comment5.text=\r\n\ @return\ returnRoom\ Returns\ a\ random\ Room\r\n
 comment6.params=x\ y
 comment6.target=Room\ getRoom(int,\ int)
+comment6.text=\r\n\ @return\ room\ Returns\ the\ room\ at\ a\ specific\ point\ in\ the\ rooms[][],\ returns\ null\ if\ no\ rooms\ are\ found\r\n
 numComments=7

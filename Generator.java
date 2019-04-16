@@ -27,10 +27,7 @@ public class Generator
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Generates and returns a randomized Starting Room;
      */
     public static Room getStartingRoom() {
         
@@ -42,7 +39,9 @@ public class Generator
         return startingRoom;
         
     }
-    
+    /**
+     * Will be developed to generate a new map to explore, complete with and an exit, loot, and enemies
+     */
     // Needs to be moved to a Map Class;
     public static void generateMappedRoom() {
         
@@ -52,7 +51,9 @@ public class Generator
         
     }
     
-    
+    /**
+     * Will be developed to generate a random Room object;
+     */
     public static Room getRandomRoom() {
         
         Room randomRoom = new Room();

@@ -1,6 +1,6 @@
 import java.util.Random;
 /**
- * Write a description of class Map here.
+ * The map class stores a specific [][] of Rooms, used to organize the game world in 2D space and provide room management.
  *
  * @author Matthew Trecozzi
  * @version 4/14/19
@@ -25,7 +25,9 @@ public class Map
         this.name = name;
     }
     
-    
+    /**
+     * Set the Exits of all room's within the rooms[][];
+     */
     public void setExits() {
         
         for (int x = 0; x < roomSize; x++) {
@@ -39,7 +41,9 @@ public class Map
         }
         
     }
-    
+    /**
+     * Set the exit of a specific room
+     */
     public void setExit(int x, int y) {
         
         Room roomToSet = rooms[x][y];
@@ -85,7 +89,9 @@ public class Map
         }
         
     }
-    
+    /**
+     * @return returnRoom Returns a random Room
+     */
     public Room returnRandomRoom(){
         
         Room returnRoom = null;
@@ -102,7 +108,9 @@ public class Map
         return returnRoom;
         
     }
-    
+    /**
+     * @return room Returns the room at a specific point in the rooms[][], returns null if no rooms are found
+     */
     public Room getRoom(int x, int y) {
         
         if (x >= 0 && y >= 0) {

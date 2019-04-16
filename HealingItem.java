@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Edible here.
+ * Healing Item extends item and allows functionality for the item to be eaten.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Matthew Trecozzi
+ * @version 4/15/19
  */
 public class HealingItem extends Item
 {
@@ -17,12 +17,21 @@ public class HealingItem extends Item
     {
         super(_name);
     }
-    
+    /**
+     * @param _name String Item's name
+     * @param healingValue Integer total health restored
+     * Creates a new healingItem
+     */
     public HealingItem (String _name, int healingValue){
      super(_name);
      this.healing = healingValue;
     }
     
+    /**
+     * Eat's the item from the player's inventory
+     * Heal's the player for the appropriate amount
+     * Removes the item from the player's inventory
+     */
     public void eat() {
         System.out.println("You eat your " + this.name + ".");
         Player.getPlayer().health += this.healing;

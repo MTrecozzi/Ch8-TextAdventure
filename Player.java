@@ -88,14 +88,19 @@ public class Player
      return weight;
         
     }
-    
+    /**
+     * Add an item to the player's inventory
+     * @param itemToAdd Item ojbect to add
+     */
     public void addItem(Item itemToAdd) {
         inventory.add(itemToAdd);
         
         
         
     }
-    
+    /**
+     * Print all items in the player's inventory, as well as the health stat;
+     */
     public void printItems() {
         
         System.out.println("Health: " + health);
