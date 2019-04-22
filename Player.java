@@ -60,7 +60,8 @@ public class Player
         if (itemToEat != null){
             
                itemToEat.eat();
-               inventory.remove(itemToEat);
+               
+               //inventory.remove(itemToEat);
                
         }
         
