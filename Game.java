@@ -385,6 +385,7 @@ public class Game
             previousRooms.push(currentRoom);
             currentRoom = nextRoom;
             System.out.println("You arrive in " + currentRoom.getTitle());
+            currentRoom.onEnter();
             
             if (!currentRoom.visited) {
               currentRoom.printInitialDescription();

@@ -45,6 +45,10 @@ public class Room
      exits = new HashMap<>();   
     }
     
+    public void onEnter(){
+        
+    }
+    
     
     /**
      * Called when the player attempts the enter comamnd while in this room
