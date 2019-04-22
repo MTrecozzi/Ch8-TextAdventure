@@ -46,7 +46,7 @@ public class Room
     }
     
     public void onEnter(){
-        
+        //Do nothing, to be overwritten by subclasses
     }
     
     

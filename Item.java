@@ -27,6 +27,10 @@ public class Item
     public void eat(){
         System.out.println("You can't eat your " + this.name);
     }
+    
+    public void removeFromInventory(){
+         Player.getPlayer().inventory.remove(this);
+    }
     /**
      * Additional Overload Constructor
      */

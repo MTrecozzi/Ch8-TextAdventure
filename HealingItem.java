@@ -35,7 +35,7 @@ public class HealingItem extends Item
     public void eat() {
         System.out.println("You eat your " + this.name + ".");
         Player.getPlayer().health += this.healing;
-        Player.getPlayer().inventory.remove(this);
+        removeFromInventory();
         Player.getPlayer().printItems();
     }
 }
